@@ -35,13 +35,13 @@ def ann(data):
     
     # Training the model
     history = model.fit(X_train, y_train, epochs=100, batch_size=32, validation_split = 0.05, verbose = 1)
-    
+    '''
     plt.plot(history.history['loss'], label='Training Loss')
     plt.plot(history.history['val_loss'], label='Validation Loss')
     # The training loss indicates how well the model is fitting the training data, while the validation loss indicates how well the model fits new data
     plt.legend()
     plt.show()
-    
+    '''
     # Testing the model
     X_test, y_test = [], []
     for i in range(past_days, len(test_data)):
@@ -97,13 +97,13 @@ def lstm_1d(data):
     
     # Training the model
     history = model.fit(X_train, y_train, epochs=100, batch_size=32, validation_split = 0.05, verbose = 1)
-    
+    '''
     plt.plot(history.history['loss'], label='Training Loss')
     plt.plot(history.history['val_loss'], label='Validation Loss')
     # The training loss indicates how well the model is fitting the training data, while the validation loss indicates how well the model fits new data
     plt.legend()
     plt.show()
-    
+    '''
     # Testing the model
     X_test, y_test = [], []
     for i in range(past_days, len(test_data)):
@@ -160,13 +160,13 @@ def lstm_2d(data):
     
     # Training the model
     history = model.fit(X_train, y_train, epochs=100, batch_size=32, validation_split = 0.05, verbose = 1)
-    
+    '''
     plt.plot(history.history['loss'], label='Training Loss')
     plt.plot(history.history['val_loss'], label='Validation Loss')
     # The training loss indicates how well the model is fitting the training data, while the validation loss indicates how well the model fits new data
     plt.legend()
     plt.show()
-    
+    '''
     # Testing the model
     X_test, y_test = [], []
     for i in range(past_days, len(test_data)):
@@ -224,13 +224,13 @@ def lstm_3d(data):
     
     # Training the model
     history = model.fit(X_train, y_train, epochs=100, batch_size=32, validation_split = 0.05, verbose = 1)
-    
+    '''
     plt.plot(history.history['loss'], label='Training Loss')
     plt.plot(history.history['val_loss'], label='Validation Loss')
     # The training loss indicates how well the model is fitting the training data, while the validation loss indicates how well the model fits new data
     plt.legend()
     plt.show()
-    
+    '''
     # Testing the model
     X_test, y_test = [], []
     for i in range(past_days, len(test_data)):
