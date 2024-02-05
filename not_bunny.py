@@ -55,9 +55,9 @@ def ann(data):
     # Calculating the Mean Absolute Error, Mean Squared Error and R2 Score
     mae = np.mean(np.abs(y_pred - y_test))
     mse = np.mean((y_pred - y_test)**2)
-    r2 = 1 - (np.sum((y_test - y_pred)**2) / np.sum((y_test - np.mean(y_test))**2))
+    #r2 = 1 - (np.sum((y_test - y_pred)**2) / np.sum((y_test - np.mean(y_test))**2))
     
-    return mae, mse, r2, y_pred, y_test
+    return mae, mse, y_pred, y_test
 
 # LSTM model with 1 layer
 def lstm_1d(data):
@@ -117,9 +117,9 @@ def lstm_1d(data):
     # Calculating the Mean Absolute Error, Mean Squared Error and R2 Score
     mae = np.mean(np.abs(y_pred - y_test))
     mse = np.mean((y_pred - y_test)**2)
-    r2 = 1 - (np.sum((y_test - y_pred)**2) / np.sum((y_test - np.mean(y_test))**2))
+    #r2 = 1 - (np.sum((y_test - y_pred)**2) / np.sum((y_test - np.mean(y_test))**2))
     
-    return mae, mse, r2, y_pred, y_test
+    return mae, mse, y_pred, y_test
 
 # LSTM model with 2 layers
 def lstm_2d(data):
@@ -180,9 +180,9 @@ def lstm_2d(data):
     # Calculating the Mean Absolute Error, Mean Squared Error and R2 Score
     mae = np.mean(np.abs(y_pred - y_test))
     mse = np.mean((y_pred - y_test)**2)
-    r2 = 1 - (np.sum((y_test - y_pred)**2) / np.sum((y_test - np.mean(y_test))**2))
+    #r2 = 1 - (np.sum((y_test - y_pred)**2) / np.sum((y_test - np.mean(y_test))**2))
     
-    return mae, mse, r2, y_pred, y_test
+    return mae, mse, y_pred, y_test
 
 # LSTM model with 3 layers
 def lstm_3d(data):
@@ -244,6 +244,6 @@ def lstm_3d(data):
     # Calculating the Mean Absolute Error, Mean Squared Error and R2 Score
     mae = np.mean(np.abs(y_pred - y_test))
     mse = np.mean((y_pred - y_test)**2)
-    r2 = 1 - (np.sum((y_test - y_pred)**2) / np.sum((y_test - np.mean(y_test))**2))
+    #r2 = 1 - (np.sum((y_test - y_pred)**2) / np.sum((y_test - np.mean(y_test))**2))
     
-    return mae, mse, r2, y_pred, y_test
+    return mae, mse, y_pred, y_test
