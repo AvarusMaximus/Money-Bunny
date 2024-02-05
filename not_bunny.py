@@ -30,7 +30,7 @@ def ann(data):
     
     # Buiding the Artificial Neural Network Model using Keras
     model = Sequential()
-    model.add(Input(20, shape=(past_days,)))
+    #model.add(Input(20))
     model.add(Dense(10, activation='relu', input_dim=past_days))
     model.add(Dense(10))
     model.add(Dropout(0.5))
@@ -109,7 +109,7 @@ def lstm_1d(data):
     
     # Buiding the Artificial Neural Network Model using Keras
     model = Sequential()
-    model.add(Input(20, shape=(past_days,)))
+    #model.add(Input(20))
     model.add(LSTM(10, activation='relu', return_sequences=False, input_shape=(X_train.shape[1], X_train.shape[2])))
     model.add(Dense(10))
     model.add(Dropout(0.5))
@@ -188,7 +188,7 @@ def lstm_2d(data):
     
     # Buiding the Artificial Neural Network Model using Keras
     model = Sequential()
-    model.add(Input(20, shape=(past_days,)))
+    #model.add(Input(20))
     model.add(LSTM(10, activation='relu', return_sequences=True, input_shape=(X_train.shape[1], X_train.shape[2])))
     model.add(LSTM(10, activation='relu', return_sequences=False))
     model.add(Dense(10))
@@ -268,7 +268,7 @@ def lstm_3d(data):
     
     # Buiding the Artificial Neural Network Model using Keras
     model = Sequential()
-    model.add(Input(20, shape=(past_days,)))
+    #model.add(Input(20))
     model.add(LSTM(10, activation='relu', return_sequences=True, input_shape=(X_train.shape[1], X_train.shape[2])))
     model.add(LSTM(10, activation='relu', return_sequences=True))
     model.add(LSTM(10, activation='relu', return_sequences=False))
