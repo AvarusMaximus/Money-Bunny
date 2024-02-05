@@ -8,7 +8,12 @@ def ann(data):
     import numpy as np
     import matplotlib.pyplot as plt
     from keras.models import Sequential
-    from keras.layers import Dense, Dropout
+    from keras.layers import Dense, Dropout, Input
+    from sklearn.preprocessing import MinMaxScaler
+    
+    # Scaling the data
+    scaler = MinMaxScaler()
+    data = scaler.fit_transform(data)
     
     # Splitting the data into training and testing data
     train_data = data[:int(0.7*len(data))]
@@ -25,6 +30,7 @@ def ann(data):
     
     # Buiding the Artificial Neural Network Model using Keras
     model = Sequential()
+    model.add(Input(20, shape=(past_days,)))
     model.add(Dense(10, activation='relu', input_dim=past_days))
     model.add(Dense(10))
     model.add(Dropout(0.5))
@@ -52,12 +58,23 @@ def ann(data):
     
     y_pred = model.predict(X_test)
     
+    y_test = y_test.reshape(-1, 1)
+    y_pred = y_pred.reshape(-1, 1)
+    
+    # inverse scaling the data
+    y_pred = scaler.inverse_transform(y_pred)
+    y_test = scaler.inverse_transform(y_test)
+    
+    # Reshaping the data
+    y_pred = y_pred.reshape(-1)
+    y_test = y_test.reshape(-1)
+    
     # Calculating the Mean Absolute Error, Mean Squared Error and R2 Score
     mae = np.mean(np.abs(y_pred - y_test))
     mse = np.mean((y_pred - y_test)**2)
-    #r2 = 1 - (np.sum((y_test - y_pred)**2) / np.sum((y_test - np.mean(y_test))**2))
+    r2 = 1 - (np.sum((y_test - y_pred)**2) / np.sum((y_test - np.mean(y_test))**2))
     
-    return mae, mse, y_pred, y_test
+    return mae, mse, r2, y_pred, y_test
 
 # LSTM model with 1 layer
 def lstm_1d(data):
@@ -69,7 +86,12 @@ def lstm_1d(data):
     import numpy as np
     import matplotlib.pyplot as plt
     from keras.models import Sequential
-    from keras.layers import LSTM, Dense, Dropout
+    from keras.layers import LSTM, Dense, Dropout, Input
+    from sklearn.preprocessing import MinMaxScaler
+    
+    # Scaling the data
+    scaler = MinMaxScaler()
+    data = scaler.fit_transform(data)
     
     # Splitting the data into training and testing data
     train_data = data[:int(0.7*len(data))]
@@ -87,6 +109,7 @@ def lstm_1d(data):
     
     # Buiding the Artificial Neural Network Model using Keras
     model = Sequential()
+    model.add(Input(20, shape=(past_days,)))
     model.add(LSTM(10, activation='relu', return_sequences=False, input_shape=(X_train.shape[1], X_train.shape[2])))
     model.add(Dense(10))
     model.add(Dropout(0.5))
@@ -114,12 +137,23 @@ def lstm_1d(data):
     
     y_pred = model.predict(X_test)
     
+    y_test = y_test.reshape(-1, 1)
+    y_pred = y_pred.reshape(-1, 1)
+    
+    # inverse scaling the data
+    y_pred = scaler.inverse_transform(y_pred)
+    y_test = scaler.inverse_transform(y_test)
+    
+    # Reshaping the data
+    y_pred = y_pred.reshape(-1)
+    y_test = y_test.reshape(-1)
+    
     # Calculating the Mean Absolute Error, Mean Squared Error and R2 Score
     mae = np.mean(np.abs(y_pred - y_test))
     mse = np.mean((y_pred - y_test)**2)
-    #r2 = 1 - (np.sum((y_test - y_pred)**2) / np.sum((y_test - np.mean(y_test))**2))
+    r2 = 1 - (np.sum((y_test - y_pred)**2) / np.sum((y_test - np.mean(y_test))**2))
     
-    return mae, mse, y_pred, y_test
+    return mae, mse, r2, y_pred, y_test
 
 # LSTM model with 2 layers
 def lstm_2d(data):
@@ -131,7 +165,12 @@ def lstm_2d(data):
     import numpy as np
     import matplotlib.pyplot as plt
     from keras.models import Sequential
-    from keras.layers import LSTM, Dense, Dropout
+    from keras.layers import LSTM, Dense, Dropout, Input
+    from sklearn.preprocessing import MinMaxScaler
+    
+    # Scaling the data
+    scaler = MinMaxScaler()
+    data = scaler.fit_transform(data)
     
     # Splitting the data into training and testing data
     train_data = data[:int(0.7*len(data))]
@@ -149,6 +188,7 @@ def lstm_2d(data):
     
     # Buiding the Artificial Neural Network Model using Keras
     model = Sequential()
+    model.add(Input(20, shape=(past_days,)))
     model.add(LSTM(10, activation='relu', return_sequences=True, input_shape=(X_train.shape[1], X_train.shape[2])))
     model.add(LSTM(10, activation='relu', return_sequences=False))
     model.add(Dense(10))
@@ -177,12 +217,23 @@ def lstm_2d(data):
     
     y_pred = model.predict(X_test)
     
+    y_test = y_test.reshape(-1, 1)
+    y_pred = y_pred.reshape(-1, 1)
+    
+    # inverse scaling the data
+    y_pred = scaler.inverse_transform(y_pred)
+    y_test = scaler.inverse_transform(y_test)
+    
+    # Reshaping the data
+    y_pred = y_pred.reshape(-1)
+    y_test = y_test.reshape(-1)
+    
     # Calculating the Mean Absolute Error, Mean Squared Error and R2 Score
     mae = np.mean(np.abs(y_pred - y_test))
     mse = np.mean((y_pred - y_test)**2)
-    #r2 = 1 - (np.sum((y_test - y_pred)**2) / np.sum((y_test - np.mean(y_test))**2))
+    r2 = 1 - (np.sum((y_test - y_pred)**2) / np.sum((y_test - np.mean(y_test))**2))
     
-    return mae, mse, y_pred, y_test
+    return mae, mse, r2, y_pred, y_test
 
 # LSTM model with 3 layers
 def lstm_3d(data):
@@ -194,7 +245,12 @@ def lstm_3d(data):
     import numpy as np
     import matplotlib.pyplot as plt
     from keras.models import Sequential
-    from keras.layers import LSTM, Dense, Dropout
+    from keras.layers import LSTM, Dense, Dropout, Input
+    from sklearn.preprocessing import MinMaxScaler
+    
+    # Scaling the data
+    scaler = MinMaxScaler()
+    data = scaler.fit_transform(data)
     
     # Splitting the data into training and testing data
     train_data = data[:int(0.7*len(data))]
@@ -212,6 +268,7 @@ def lstm_3d(data):
     
     # Buiding the Artificial Neural Network Model using Keras
     model = Sequential()
+    model.add(Input(20, shape=(past_days,)))
     model.add(LSTM(10, activation='relu', return_sequences=True, input_shape=(X_train.shape[1], X_train.shape[2])))
     model.add(LSTM(10, activation='relu', return_sequences=True))
     model.add(LSTM(10, activation='relu', return_sequences=False))
@@ -241,9 +298,20 @@ def lstm_3d(data):
     
     y_pred = model.predict(X_test)
     
+    y_test = y_test.reshape(-1, 1)
+    y_pred = y_pred.reshape(-1, 1)
+    
+    # inverse scaling the data
+    y_pred = scaler.inverse_transform(y_pred)
+    y_test = scaler.inverse_transform(y_test)
+    
+    # Reshaping the data
+    y_pred = y_pred.reshape(-1)
+    y_test = y_test.reshape(-1)
+    
     # Calculating the Mean Absolute Error, Mean Squared Error and R2 Score
     mae = np.mean(np.abs(y_pred - y_test))
     mse = np.mean((y_pred - y_test)**2)
-    #r2 = 1 - (np.sum((y_test - y_pred)**2) / np.sum((y_test - np.mean(y_test))**2))
+    r2 = 1 - (np.sum((y_test - y_pred)**2) / np.sum((y_test - np.mean(y_test))**2))
     
-    return mae, mse, y_pred, y_test
+    return mae, mse, r2, y_pred, y_test
